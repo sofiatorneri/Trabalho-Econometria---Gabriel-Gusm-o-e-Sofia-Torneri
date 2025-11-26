@@ -1,23 +1,29 @@
 # =========================================================
-# 1. Pacotes
+# 1. Pacotes 
 # =========================================================
-library(readxl)
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(lmtest)
-library(sandwich)
-library(modelsummary)
-library(margins)
-library(car)
-library(tidyr)
-library(moments)
-library(stringr)
-library(scales)
+
+pacotes_necessarios <- c(
+  "readxl", "readr", "dplyr", "ggplot2", "lmtest", "sandwich",
+  "modelsummary", "margins", "car", "tidyr", "moments",
+  "stringr", "scales", "rstudioapi"
+)
+
+pacotes_instalados <- pacotes_necessarios %in% rownames(installed.packages())
+
+if (any(!pacotes_instalados)) {
+  install.packages(pacotes_necessarios[!pacotes_instalados])
+}
+
+lapply(pacotes_necessarios, library, character.only = TRUE)
+
+
 
 # =========================================================
-# 2. Caminhos dos arquivos (relativos à pasta do projeto)
+# 2. Caminhos dos arquivos (automático)
 # =========================================================
+
+# Define automaticamente como pasta de trabalho a pasta onde o script está salvo
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # pasta onde os arquivos de dados devem estar
 data_dir <- "dados"
@@ -25,6 +31,11 @@ data_dir <- "dados"
 # arquivos dentro da pasta dados/
 layout_path  <- file.path(data_dir, "Layout_microdados_Amostra_14_munic_20160301.xls")
 pessoas_path <- file.path(data_dir, "Amostra_Pessoas_14munic.txt")
+
+# verificação de segurança
+if (!file.exists(layout_path) | !file.exists(pessoas_path)) {
+  stop("ERRO: Arquivos não encontrados na pasta 'dados/'. Verifique se os microdados foram corretamente copiados.")
+}
 
 
 # =========================================================
@@ -510,3 +521,4 @@ hist(res_m3,
      breaks = 50,
      main   = "Histograma dos resíduos – m3",
      xlab   = "Resíduo")
+
