@@ -1,1 +1,1 @@
-# Trabalho-Econometria---Gabriel-Gusm-o-e-Sofia-Torneri
+# Trabalho-Econometria---Gabriel-Gusmao-e-Sofia-Torneri
