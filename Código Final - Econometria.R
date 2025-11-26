@@ -16,11 +16,16 @@ library(stringr)
 library(scales)
 
 # =========================================================
-# 2. Caminhos dos arquivos
+# 2. Caminhos dos arquivos (relativos à pasta do projeto)
 # =========================================================
-layout_path  <- "C:/Users/sofia/Downloads/microdados_ 14_municipios_com_areas_redefinidas_20160331/microdados_ 14_municipios_com_areas_redefinidas/Documentação/Layout/Layout_microdados_Amostra_14_munic_20160301.xls"
 
-pessoas_path <- "C:/Users/sofia/Downloads/microdados_ 14_municipios_com_areas_redefinidas_20160331/microdados_ 14_municipios_com_areas_redefinidas/Dados/Amostra_Pessoas_14munic.txt"
+# pasta onde os arquivos de dados devem estar
+data_dir <- "dados"
+
+# arquivos dentro da pasta dados/
+layout_path  <- file.path(data_dir, "Layout_microdados_Amostra_14_munic_20160301.xls")
+pessoas_path <- file.path(data_dir, "Amostra_Pessoas_14munic.txt")
+
 
 # =========================================================
 # 3. Leitura do layout e dos microdados de pessoas
